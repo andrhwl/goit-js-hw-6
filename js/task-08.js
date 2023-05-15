@@ -1,19 +1,22 @@
-const formEl = document.querySelector(".login-form");
-const emailEl = document.querySelector(`input[type = "email"]`);
-const passwordEl = document.querySelector(`input[type = "password"]`);
-const submitBtn = document.querySelector(`button [type ="submit"]`);
-formEl.addEventListener("submit", submittance);
-function submittance(event){
-event.preventDefault();
-if(emailEl.value.length == 0){
- alert("Warning! Email input field is blank. All fields must be filled in before submitting!");
-}else if(passwordEl.value.length == 0){
-    alert("Warning! Password input field is blank. All fields must be filled in before submitting!");
-}
-const data = {
-    email: emailEl.value, 
-    password: passwordEl.value
-}
-console.log(data);
-formEl.reset();
+const form = document.querySelector(".login-form");
+
+form.addEventListener("submit", onFormSubmit);
+
+function onFormSubmit(event) {
+  event.preventDefault();
+
+  // const email = form.elements.email.value;
+  // const password = form.elements.password.value;
+  const { email, password } = form.elements;
+
+  if (email.value === "" || password.value.trim() === "") {
+    return alert("Всі поля повинні бути заповнені!");
+  }
+  const formData = {
+    email: email,
+    password: password,
+  };
+  console.log(formData);
+
+  form.reset();
 }
